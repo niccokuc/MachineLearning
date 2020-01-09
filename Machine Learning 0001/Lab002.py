@@ -19,6 +19,7 @@ import pandas as pd
 import pylab as pl
 import numpy as np
 
+# Read in the data file
 df = pd.read_csv("FuelConsumption.csv")
 print(df)
 
@@ -30,7 +31,7 @@ dataset_raw = df.head()
 dataset_summary = df.describe()
 #print(dataset_summary)
 
-#Lets select some features to explore more.
+# Lets select some features to explore more. Only select these features to use from the data.
 cdf = df[['ENGINESIZE','CYLINDERS','FUELCONSUMPTION_COMB','CO2EMISSIONS']]
 #print(cdf)
 
@@ -39,8 +40,14 @@ cdf = df[['ENGINESIZE','CYLINDERS','FUELCONSUMPTION_COMB','CO2EMISSIONS']]
 # https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.random.rand.html
 print(len(df))
 
-msk = np.random.rand(len(df)) < 0.8 #creates an array of 1 dimenssion of the rows based on random numbers between 0 and 1067 for 80% of sample
-train = cdf[msk] # using the array 'msk', overlay it against the data 'cdf' for 80% - TRUE
-test = cdf[~msk] # using the array 'msk', overlay it against the data 'cdf' for 20% - FALSE
+# Creates an array of 1 dimension TRUE AND FALSE of the index of the data of the rows based on
+# random numbers between 0 and 1067 for 80% of sample
+msk = np.random.rand(len(df)) < 0.8 
+print(msk)
+# Using the array 'msk', overlay it against the data 'cdf' for 80% - TRUE
+train = cdf[msk]
+# Using the array 'msk', overlay it against the data 'cdf' for 20% - FALSE
+test = cdf[~msk]
 print(train)
 print(test)
+
