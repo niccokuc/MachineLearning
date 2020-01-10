@@ -52,3 +52,5 @@ plt.show()
 msk = np.random.rand(len(df)) < 0.8
 train = cdf[msk] #80% - TRUE
 test = cdf[~msk] #20% - FALSE
+
+
